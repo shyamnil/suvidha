@@ -68,7 +68,7 @@ $pdf->SetFont('Arial', '', 11);
 
 $pdf->Write(8, " AC is allowed to use loudspeaker on ");
 $pdf->SetFont('Arial', 'BU', 11);
-$pdf->Write(8, $data['event_date']);
+$pdf->Write(8, $data['events_date']);
 $pdf->SetFont('Arial', '', 11);
 
 $pdf->Write(8, " at ");
