@@ -28,7 +28,7 @@ $data['events_date'] . " to " . $data['evente_date'] .
 " of Mouza :- " . $data['mouza'] . ", Plot : " . $data['plot'] . 
 " under P.S. " . $data['police_station'] . 
 " of " . $data['block'] . 
-" (Block/Municipality/Corporation ) has been received from Sri/Smt. " . $data['applicant_name'] . 
+" (Block / Municipality / Corporation ) has been received from Sri / Smt. " . $data['applicant_name'] . 
 ", Representative of " . $data['party'] . ".";
 $pdf->MultiCell(0, 6, $text);
 
@@ -42,16 +42,22 @@ $pdf->MultiCell(0, 6,
 // NOC
 $pdf->Ln(7);
 $pdf->MultiCell(0, 6, 
-"     [   ] Applicant(s) submitted/NOT submitted NOC from owner of the land/property or authorized entity managing the property"
+"     [   ] Applicant(s) submitted / NOT submitted NOC from owner of the land / property or authorized entity managing the property"
 );
 $pdf->Ln(5);
 // Expenditure
 $pdf->MultiCell(0, 6, 
 "     [   ] Applicant(s) submitted/NOT submitted the probable Expenditure statement for the campaign in Annexure-D1"
 );
+$pdf->Ln(5);
 
+// Main Paragraph
+$pdf->MultiCell(0, 6, "Hence permission is accorded for Display of Poster/ Hoarding/Unipole for the period from " . 
+$data['events_date'] . " to " . $data['evente_date'] . 
+" with condition that in the event of any violation of ECI’s MCC guidelines or other instructions, this permission will stand cancelled with immediate effect."
+);
 $pdf->Ln(7);
-
+$pdf->SetFont('Arial', 'B', 11);
 // Permission Decision
 if (strtolower($data['flags']) == '1') {
     $pdf->MultiCell(0, 6, 
@@ -60,11 +66,11 @@ if (strtolower($data['flags']) == '1') {
     " with condition that in the event of any violation of ECI’s MCC guidelines or other instructions, this permission will stand cancelled with immediate effect."
     );
 } else {
-	$pdf->SetFont('Arial', 'B', 9);
+	$pdf->SetFont('Arial', 'B', 10);
 	$pdf->Cell(0, 10, "OR", 0, 1, 'C');
-	$pdf->SetFont('Arial', '', 9);
+	$pdf->SetFont('Arial', '', 10);
     $pdf->MultiCell(0, 6, 
-    "Permission is not accorded for Display of Poster/ Hoarding/Unipole due to reason(s) stated herein above "
+    "Permission is not accorded for Display of Poster/ Hoarding/ Unipole due to reason(s) stated herein above "
     );
 	$pdf->MultiCell(0, 6, 
     "Recommended/ Not Recommended : "
