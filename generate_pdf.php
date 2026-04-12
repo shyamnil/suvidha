@@ -17,7 +17,8 @@ $data = [
     'party'          => $_POST['party'] ?? '',
     'applicant_name' => $_POST['applicant_name'] ?? '',
     'candidate_name' => $_POST['candidate_name'] ?? '',
-    'event_date' => isset($_POST['event_date']) ? date("d-m-Y", strtotime($_POST['event_date'])) : '',
+    'events_date' => isset($_POST['events_date']) ? date("d-m-Y", strtotime($_POST['events_date'])) : '',
+	'evente_date' => isset($_POST['evente_date']) ? date("d-m-Y", strtotime($_POST['evente_date'])) : '',
     'evts_time'      => $_POST['evts_time'] ?? '',
     'place'          => $_POST['place'] ?? '',
     'end_time'       => $_POST['end_time'] ?? '',
@@ -28,6 +29,8 @@ $data = [
     'ac_name' 		 => $_POST['ac_name'] ?? '',
 	'police_station'  => $_POST['police_station'] ?? '',
 	'block' 		 => $_POST['block'] ?? '',
+	'mouza' 		 => $_POST['mouza'] ?? '',
+	'plot' 		     => $_POST['plot'] ?? '',
 ];
 
 $pdf = new FPDF('P', 'mm', 'A4');

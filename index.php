@@ -143,6 +143,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <option value="annexure_p1">Annexure-P1 (Street Corner Meeting)</option>
                         <option value="annexure_p3">Annexure-P3 (Rally/Procession)</option>
 						<option value="door">Annexure-P3 (Door to Door Canvasing)</option>
+						<option value="annexure_p5">Annexure-P5 (Display Poster/ Hoarding)</option>
                     </select>
                 </div>
                 <div>
@@ -199,8 +200,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <div class="section-title">Event Details</div>
             <div class="grid">
                 <div>
-                    <label>Event Date:</label>
-                    <input type="date" name="event_date" id="event_date">
+                    <label>Event Start Date:</label>
+                    <input type="date" name="events_date" id="events_date">
+                </div>
+				<div>
+                    <label>Event End Date:</label>
+                    <input type="date" name="evente_date" id="evente_date">
                 </div>
                 <div>
                     <label>Start Time:</label>
@@ -236,6 +241,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     </div>
                 </div>
             </div>
+			<div id="p5_fields">
+                <label>Mouza Name:</label>
+                <input type="text" name="mouza" id="mouza" placeholder="Ex: Nadanghat">
+				<label>Plot No:</label>
+                <input type="text" name="plot" id="plot" placeholder="Ex: 408">
+            </div>
+
 
             <button type="submit" class="gen-btn" id="submit-btn">Generate & View PDF</button>
         </form>
@@ -311,9 +323,12 @@ document.getElementById('pdf-file').addEventListener('change', async function(e)
             document.getElementById('app_time').value = convertTo24Hour(subMatch[2]);
         }
 
-        const evtDateMatch = text.match(/Date & Timing:\s*(\d{2}-\d{2}-\d{4})/);
-        if (evtDateMatch) document.getElementById('event_date').value = evtDateMatch[1].split('-').reverse().join('-');
+        const evtMatch = text.match(/Date\s*&\s*Timing:\s*(\d{2}-\d{2}-\d{4})\s+\d{2}:\d{2}:\d{2}[ap]m\s+to\s+(\d{2}-\d{2}-\d{4})/i);
 
+			if (evtMatch) {
+							document.getElementById('events_date').value = evtMatch[1].split('-').reverse().join('-');
+							document.getElementById('evente_date').value = evtMatch[2].split('-').reverse().join('-');
+}
         const allTimes = text.match(/(\d{2}:\d{2}:\d{2})(am|pm)/gi);
         if (allTimes && allTimes.length >= 2) {
             document.getElementById('evts_time').value = convertTo24Hour(allTimes[allTimes.length - 2]);
@@ -360,6 +375,7 @@ function toggleType() {
     const val = document.getElementById('form_type').value;
     document.getElementById('rally_fields').style.display = (val === 'annexure_p3') ? 'block' : 'none';
     document.getElementById('p1_fields').style.display = (val === 'annexure_p1') ? 'block' : 'none';
+	document.getElementById('p5_fields').style.display = (val === 'annexure_p5') ? 'block' : 'none';
 }
 </script>
 </body>
