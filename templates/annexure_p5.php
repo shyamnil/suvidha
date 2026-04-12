@@ -1,6 +1,6 @@
 <?php
 
-$pdf->SetFont('Arial', '', 11);
+$pdf->SetFont('Arial', 'B', 11);
 
 // Title
 $pdf->SetFont('Arial', 'B', 13);
@@ -12,7 +12,7 @@ $pdf->Cell(0, 8, 'Permission for Display of Poster / Hoarding / Unipole', 0, 1, 
 $pdf->Ln(5);
 
 // Permission No & Date
-$pdf->SetFont('Arial', '', 11);
+$pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(100, 6, 'Permission No: ' . $data['per_id'], 0, 0);
 $pdf->Cell(0, 6, 'Dated: ' . $data['per_date'], 0, 1);
 
