@@ -52,24 +52,26 @@ $pdf->Ln(12);
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(8, "1. Route of Rally / Procession (AC, Block, PS to be mentioned): ");
 $pdf->SetFont('Arial', 'BU', 9);
-$pdf->MultiCell(0, 7, $data['route'], 'BU'); 
+$pdf->MultiCell(0, 7, $data['place'] . " / AC - " . $data['ac_name'] . " / PS - " . $data['police_station'], 0, 'L');
 $pdf->Ln(2);
 
 $pdf->SetFont('Arial', '', 9);
-$pdf->Write(8, "2. Date: ");
+// 1. Write the Date label and value (Width of 90mm keeps it on the left)
+$pdf->Cell(20, 8, "2. Date: ", 0, 0, 'L'); 
 $pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, $data['event_date'] . "            ");
+$pdf->Cell(70, 8, $data['event_date'], 0, 0, 'L'); 
+
+// 2. Jump to the right side (e.g., 120mm from the left edge)
+$pdf->SetX(120); 
+
 $pdf->SetFont('Arial', '', 9);
-$pdf->Write(8, "3. Time: ");
-$pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, date("h:i A", strtotime($data['evts_time'])));
+$pdf->Cell(20, 8, "3. Time: ", 0, 0, 'L');
 $pdf->SetFont('Arial', 'BU', 9);
 
-$pdf->Write(8, " to ");
-$pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, date("h:i A", strtotime($data['end_time'])));
-$pdf->SetFont('Arial', '', 9);
-$pdf->Ln(12);
+// 3. Format and display the time range
+$time_range = date("h:i A", strtotime($data['evts_time'])) . " to " . date("h:i A", strtotime($data['end_time']));
+$pdf->Cell(0, 8, $time_range, 0, 1, 'L'); // '1' at the end moves to the next line
+$pdf->Ln(5);
 // --- OBJECTION SECTION ---
 $pdf->SetFont('Arial', '', 9);
 
@@ -83,12 +85,12 @@ $pdf->Ln(7);
 $pdf->Write(7, "Authority ");
 $pdf->SetFont('Arial', 'B', 9);
 // If no objection, this will print dots; otherwise, the authority name
-$pdf->Write(7, !empty($data['obj_authority']) ? $data['obj_authority'] : "........................................................");
+$pdf->Write(7, !empty($data['obj_authority']) ? $data['obj_authority'] : "..................................");
 
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(7, " Reason cited, ");
 $pdf->SetFont('Arial', 'B', 9);
-$pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : ".........................................................");
+$pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "...........................................................................");
 $pdf->Ln(10);
 
 // --- PERMISSION ACCORDED STATEMENT ---

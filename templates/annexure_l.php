@@ -44,7 +44,7 @@ $pdf->SetFont('Arial', '', 11);
 $pdf->SetX(-85);
 $pdf->Write(7, "Time: ");
 $pdf->SetFont('Arial', 'BU', 11);
-$pdf->Write(7, $data['app_time'] . " (AM/PM)");
+$pdf->Write(8, date("h:i A", strtotime($data['app_time'])));
 $pdf->SetFont('Arial', '', 11);
 $pdf->Ln(12);
 
@@ -118,5 +118,5 @@ $pdf->Cell(0, 7, "Order for use of loudspeaker is not issued due to following re
 $pdf->Ln(15);
 $pdf->SetFont('Arial', 'B', 11);
 $pdf->Cell(0, 6, "Signature of Sub-Divisional / Competent Authority", 0, 1, 'R');
-$pdf->Cell(0, 6, "SUBDIVISION/DISTRICT: ",0, 1, 'L');
+$pdf->Cell(0, 6, "SUBDIVISION/DISTRICT: ",0, 1, 'R');
 ?>

@@ -25,7 +25,9 @@ $data = [
     'route'          => $_POST['route'] ?? '',
     'flags'          => $_POST['flags'] ?? '0',
     'stickers'       => $_POST['stickers'] ?? '0',
-    'ac_name'        => $_POST['ac_name'] ?? '0',
+    'ac_name' 		 => $_POST['ac_name'] ?? '',
+	'police_station'  => $_POST['police_station'] ?? '',
+	'block' 		 => $_POST['block'] ?? '',
 ];
 
 $pdf = new FPDF('P', 'mm', 'A4');

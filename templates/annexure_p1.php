@@ -39,7 +39,7 @@ $pdf->Write(8, $data['app_date']);
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(8, " (date) at , ");
 $pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, $data['app_time']);
+$pdf->Write(8, date("h:i A", strtotime($data['app_time'])));
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(8, ", (Time) ");
 $pdf->SetFont('Arial', 'BU', 9);
@@ -63,20 +63,22 @@ $pdf->MultiCell(0, 7, $data['route'], 'BU');
 $pdf->Ln(2);
 
 $pdf->SetFont('Arial', '', 9);
-$pdf->Write(8, "2. Date: ");
+// 1. Write the Date label and value (Width of 90mm keeps it on the left)
+$pdf->Cell(20, 8, "2. Date: ", 0, 0, 'L'); 
 $pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, $data['event_date'] . "            ");
+$pdf->Cell(70, 8, $data['event_date'], 0, 0, 'L'); 
+
+// 2. Jump to the right side (e.g., 120mm from the left edge)
+$pdf->SetX(120); 
+
 $pdf->SetFont('Arial', '', 9);
-$pdf->Write(8, "3. Time: ");
-$pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, date("h:i A", strtotime($data['evts_time'])));
+$pdf->Cell(20, 8, "3. Time: ", 0, 0, 'L');
 $pdf->SetFont('Arial', 'BU', 9);
 
-$pdf->Write(8, " to ");
-$pdf->SetFont('Arial', 'BU', 9);
-$pdf->Write(8, date("h:i A", strtotime($data['end_time'])));
-$pdf->SetFont('Arial', '', 9);
-$pdf->Ln(12);
+// 3. Format and display the time range
+$time_range = date("h:i A", strtotime($data['evts_time'])) . " to " . date("h:i A", strtotime($data['end_time']));
+$pdf->Cell(0, 8, $time_range, 0, 1, 'L'); // '1' at the end moves to the next line
+
 // --- OBJECTION SECTION ---
 $pdf->SetFont('Arial', '', 9);
 

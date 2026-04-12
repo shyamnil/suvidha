@@ -140,17 +140,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <label>Permission Type:</label>
                     <select name="form_type" id="form_type" onchange="toggleType()">
                         <option value="annexure_l">Annexure-L (Loudspeaker)</option>
-                        <option value="annexure_p1">Annexure-P1 (Meeting)</option>
-                        <option value="annexure_p3">Annexure-P3 (Rally)</option>
+                        <option value="annexure_p1">Annexure-P1 (Street Corner Meeting)</option>
+                        <option value="annexure_p3">Annexure-P3 (Rally/Procession)</option>
+						<option value="door">Annexure-P3 (Door to Door Canvasing)</option>
                     </select>
                 </div>
                 <div>
                     <label>Permission No:</label>
-                    <input type="text" name="per_id" placeholder="Ex: 123456" required>
+                    <input type="text" name="per_id" placeholder="Ex: 123456">
                 </div>
                 <div>
                     <label>Permission Date:</label>
-                    <input type="date" name="per_date" required>
+                    <input type="date" name="per_date">
                 </div>
 				<div>
                     <label>AC Name:</label>
@@ -178,16 +179,19 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 </div>
                 <div>
                     <label>Applicant Name:</label>
-                    <select name="applicant_name" id="applicant_name_select">
-                        <option value="">-- Extracted --</option>
-                        <option value="Anil Kumar Paul">Anil Kumar Paul</option>
-                        <option value="Sayed Mainuddin Hossain">Sayed Mainuddin Hossain</option>
-                        <option value="Tapas Bagdi">Tapas Bagdi</option>
-                    </select>
+					<input type="text" name="applicant_name" id="applicant_name_select">
                 </div>
                 <div>
                     <label>Candidate Name:</label>
                     <input type="text" name="candidate_name" id="candidate_name_input">
+                </div>
+				<div>
+                    <label>Police Station:</label>
+                    <input type="text" name="police_station" id="police_station">
+                </div>
+				<div>
+                    <label>Block Name:</label>
+                    <input type="text" name="block" id="block">
                 </div>
 				
             </div>
@@ -196,20 +200,21 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <div class="grid">
                 <div>
                     <label>Event Date:</label>
-                    <input type="date" name="event_date" id="event_date" required>
+                    <input type="date" name="event_date" id="event_date">
                 </div>
                 <div>
                     <label>Start Time:</label>
-                    <input type="time" name="evts_time" id="evts_time" required>
+                    <input type="time" name="evts_time" id="evts_time">
                 </div>
                 <div>
                     <label>End Time:</label>
-                    <input type="time" name="end_time" id="end_time" required>
+                    <input type="time" name="end_time" id="end_time">
                 </div>
                 <div>
                     <label>Place/Location:</label>
                     <input type="text" name="place" id="place">
                 </div>
+				
             </div>
 
             <div id="p1_fields">
@@ -246,7 +251,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 	<footer class="site-footer">
     <p class="footer-text">
         SUVIDHA AUTOMATION SYSTEM &copy; 2026 | 
-        <span class="shyam-credit">CREATED BY SHYAM</span>
+        <span class="shyam-credit">Created By Mr. Shyam Sundar Modak</span>
     </p>
 </footer>
 </div>
@@ -279,6 +284,15 @@ document.getElementById('pdf-file').addEventListener('change', async function(e)
 
         const partyMatch = text.match(/Party Name:\s*([\s\S]*?)(?=State|$)/i);
         if (partyMatch) document.getElementById('party').value = partyMatch[1].trim();
+		
+		// Extract AC Name
+			const acMatch = text.match(/AC:\s*([\s\S]*?)(?=Police Station|$)/i);
+				if (acMatch) document.getElementById('ac_name_input').value = acMatch[1].trim();
+				
+			// 3. Extract Police Station (Look for Rampurhat) 
+		// We use \s* to catch the value even if it's on a new line in the text stream
+			const psMatch = text.match(/Police Station\s*([\s\S]*?)(?=Location|$)/i);
+			if (psMatch) document.getElementById('police_station').value = psMatch[1].trim();
 		
         const refMatch = text.match(/Refrence ID:\s*([A-Z0-9]+)/i);
         if (refMatch) document.getElementById('app_id').value = refMatch[1];
