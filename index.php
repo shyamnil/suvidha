@@ -144,6 +144,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <option value="annexure_p3">Annexure-P3 (Rally/Procession)</option>
 						<option value="door">Annexure-P3 (Door to Door Canvasing)</option>
 						<option value="annexure_p5">Annexure-P5 (Display Poster/ Hoarding)</option>
+						<option value="annexure_n1">Annexure-N1 (Street/ Holding Meeting)</option>
+						<option value="annexure_n10">Annexure-N10 (Holding Procession/Rally)</option>
                     </select>
                 </div>
                 <div>
