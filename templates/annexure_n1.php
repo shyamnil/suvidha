@@ -24,7 +24,7 @@ $pdf->Ln(5);
 
 // --- APPLICANT DETAILS ---
 $pdf->SetFont('Arial', '', 9);
-$pdf->Write(8, "Certified that application has been received from Sri Smt.  ");
+$pdf->Write(8, "Certified that application has been received from  ");
 $pdf->SetFont('Arial', 'BU', 9);
 $pdf->Write(8, $data['applicant_name']);
 $pdf->SetFont('Arial', '', 9);
