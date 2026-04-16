@@ -88,4 +88,12 @@ $pdf->Write(7, " (date) ");
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "...................................................(Time)");
 $pdf->Ln(10);
+$pdf->SetFont('Arial', '', 9);
+$pdf->Write(7, " Reasons for rejection of NOC or modification: ");
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "_________________________________________________________________________________________________________");
+$pdf->Ln(16);
+$pdf->SetFont('Arial', '', 9);
+$pdf->Write(7, " Also stated that no other NOC is issued for holding Meeting with Loudspeaker/Meeting without Loudspeaker/ Street Cornering with Loudspeaker/ Street Cornering without Loudspeaker/ use of Loudspeaker* at the same venue and time from this office. ");
+
 ?>

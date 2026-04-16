@@ -91,9 +91,18 @@ $pdf->SetFont('Arial', '', 9);
 $pdf->Write(7, " (date) ");
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "...................................................(Time)");
-$pdf->Ln(8);
+$pdf->Ln(6);
 $pdf->SetFont('Arial', '', 9);
 $pdf->Write(7, " (Modified route:) ");
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "_________________________________________________________________________________________________________");
+$pdf->Ln(8);
+$pdf->SetFont('Arial', '', 9);
+$pdf->Write(7, " Reasons for rejection of NOC or modification: ");
+$pdf->SetFont('Arial', 'B', 9);
+$pdf->Write(7, !empty($data['obj_reason']) ? $data['obj_reason'] : "_________________________________________________________________________________________________________");
+$pdf->Ln(16);
+$pdf->SetFont('Arial', '', 9);
+$pdf->Write(7, " Also stated that no other NOC is issued holding Procession/Rally at the same route and time from this office. ");
+
 ?>
