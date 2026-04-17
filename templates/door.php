@@ -58,7 +58,6 @@ $pdf->SetFont('Arial', '', 9);
 $pdf->Cell(20, 8, "2. Date: ", 0, 0, 'L'); 
 $pdf->SetFont('Arial', 'BU', 9);
 $pdf->Write(8, $data['events_date']);
-$pdf->SetFont('Arial', '', 11);
  
 
 // 2. Jump to the right side (e.g., 120mm from the left edge)
