@@ -57,7 +57,9 @@ $pdf->SetFont('Arial', '', 9);
 // 1. Write the Date label and value (Width of 90mm keeps it on the left)
 $pdf->Cell(20, 8, "2. Date: ", 0, 0, 'L'); 
 $pdf->SetFont('Arial', 'BU', 9);
-$pdf->Cell(70, 8, $data['events_date'] . $data['evente_date'] , 0, 0, 'L'); 
+$pdf->Write(8, $data['events_date']);
+$pdf->SetFont('Arial', '', 11);
+ 
 
 // 2. Jump to the right side (e.g., 120mm from the left edge)
 $pdf->SetX(120); 
